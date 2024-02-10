@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { useForceUpdate } from '../utils'
+import { useForceUpdate, IS_NATIVE } from '../utils'
 
 export type Payslip = {
   id: string
@@ -21,16 +21,19 @@ for (let i = 0; i < 20; i++) {
     name: faker.person.fullName(),
     address: `${faker.location.zipCode()}, ${faker.location.streetAddress()}, ${faker.location.secondaryAddress()}`,
     amount: faker.number.int({ min: 50, max: 1000 }),
-    imageUrl: 'https://support.payhero.co.nz/hc/article_attachments/360005912516',
+    // we use local file for web bc we need to have same origin file for seamless download
+    imageUrl: IS_NATIVE
+      ? 'https://support.payhero.co.nz/hc/article_attachments/360005912516'
+      : '/payslip.png',
     isUnread: true,
   })
 }
 
-export function useGetPayslips () {
+export function useGetPayslips() {
   return { data: payslips }
 }
 
-export function useMarkPayslipRead () {
+export function useMarkPayslipRead() {
   const forceUpdate = useForceUpdate()
 
   return {
@@ -41,6 +44,6 @@ export function useMarkPayslipRead () {
         payslip.isUnread = false
         forceUpdate()
       }
-    }
+    },
   }
 }

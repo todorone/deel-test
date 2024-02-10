@@ -6,18 +6,21 @@ interface Props {
   payslip: Payslip
 }
 
-function PayslipListItem ({ payslip }: Props) {
+function PayslipListItem({ payslip }: Props) {
   const { mutate } = useMarkPayslipRead()
 
   return (
-    <IonItem onClick={() => {
-      mutate(payslip.id)
-    }} routerLink={`/payslip/${payslip.id}`} detail={false}>
+    <IonItem
+      onClick={() => {
+        mutate(payslip.id)
+      }}
+      routerLink={`/payslip/${payslip.id}`}
+      detail={false}
+    >
       <div slot="start" className={`dot${payslip.isUnread ? ' dot-unread' : ''}`} />
       <IonLabel className="ion-text-wrap">
         <h2>
           #{payslip.id}
-
           <IonNote>${payslip.amount}</IonNote>
         </h2>
 
