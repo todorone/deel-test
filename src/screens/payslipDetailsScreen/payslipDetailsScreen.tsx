@@ -27,32 +27,32 @@ function PayslipDetailsScreen() {
 
   const [showToast] = useIonToast()
 
-  const handlePayslipDownloadNative = () => {
+  const handlePayslipDownloadNative = async () => {
     if (payslip === undefined) return
 
-    Filesystem.downloadFile({
-      url: payslip.imageUrl,
-      path: 'payslip.png',
-      directory: Directory.Documents,
-    })
-      .then(() => {
-        showToast({
-          message: 'Payslip successfully downloaded to Documents',
-          duration: 2000,
-          position: 'top',
-          color: 'success',
-          icon: checkmarkCircle,
-        })
+    try {
+      await Filesystem.downloadFile({
+        url: payslip.imageUrl,
+        path: 'payslip.png',
+        directory: Directory.Documents,
       })
-      .catch(() => {
-        showToast({
-          message: 'Issue occured on payslip download',
-          duration: 2000,
-          position: 'top',
-          color: 'danger',
-          icon: alertCircle,
-        })
+
+      showToast({
+        message: 'Payslip successfully downloaded to Documents',
+        duration: 2000,
+        position: 'top',
+        color: 'success',
+        icon: checkmarkCircle,
       })
+    } catch {
+      showToast({
+        message: 'Issue occured on payslip download',
+        duration: 2000,
+        position: 'top',
+        color: 'danger',
+        icon: alertCircle,
+      })
+    }
   }
 
   return (
@@ -69,7 +69,8 @@ function PayslipDetailsScreen() {
         {payslip ? (
           <>
             <IonItem>
-              <IonIcon aria-hidden="true" icon={personCircle} color="primary"></IonIcon>
+              <IonIcon aria-hidden="true" icon={personCircle} color="primary" />
+
               <IonLabel className="ion-text-wrap">
                 <h2>
                   {payslip.name} <IonNote>#{payslip.id}</IonNote>
@@ -100,7 +101,9 @@ function PayslipDetailsScreen() {
             </IonButton>
           </>
         ) : (
-          <div>Oops, payslip not found, we're already investigating it...</div>
+          <div className="ion-padding">
+            Oops, payslip not found, we're already investigating it...
+          </div>
         )}
       </IonContent>
     </IonPage>

@@ -1,5 +1,5 @@
 {
-  "name": "deel",
+  "name": "deel-test",
   "private": true,
   "version": "0.0.1",
   "scripts": {
@@ -7,8 +7,7 @@
     "dev:ios": "npm run build:web && ionic cap run ios -l --external",
     "dev:android": "npm run build:web && ionic cap run android -l --external",
     "build:web": "tsc && vite build",
-    "format": "prettier ./src --write --ignore-unknown",
-    "lint": "eslint ./src --ext .js,.ts,.tsx"
+    "format": "prettier ./src --write --ignore-unknown"
   },
   "dependencies": {
     "@capacitor/android": "5.6.0",

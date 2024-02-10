@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import HomeScreen from './screens/home'
@@ -30,15 +30,8 @@ function App() {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/" exact={true}>
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home" exact={true}>
-            <HomeScreen />
-          </Route>
-          <Route path="/payslip/:id">
-            <PayslipDetailsScreen />
-          </Route>
+          <Route path="/" exact component={HomeScreen} />
+          <Route path="/payslip/:id" component={PayslipDetailsScreen} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
