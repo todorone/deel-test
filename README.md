@@ -3,6 +3,11 @@
 App is tailored for mobile phones - both native platforms and web
 
 ## Installation
+Install dependencies
+```shell
+npm i
+```
+
 For mobile platforms install XCode and Android Studio
 
 ## Running
