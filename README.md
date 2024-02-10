@@ -7,6 +7,8 @@
 - Payslips unread indicator cleared after details page opened
 - Download payslip on Web/iOS/Android
 
+<video src='https://github.com/todorone/deel-test/raw/main/showcase.mov' width=1000 />
+
 ## Installation
 Install dependencies
 ```shell
